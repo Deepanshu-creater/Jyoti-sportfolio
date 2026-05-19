@@ -400,7 +400,7 @@ const Hero = () => {
               style={{
                 background: 'rgba(15,23,42,0.85)',
                 border: `1px solid ${theme.accent1}33`,
-                backdropFilter: 'blur(16px)',
+                /* backdropFilter removed for performance */
                 boxShadow: `0 24px 60px ${theme.shadow1}`,
               }}
             >

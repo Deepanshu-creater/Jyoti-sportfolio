@@ -1,14 +1,14 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, createContext, useContext, useMemo, lazy, Suspense } from 'react';
 import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
-import Experience from './components/Experience';
-import Certifications from './components/Certifications';
-import Education from './components/Education';
-import Achievements from './components/Achievements';
-import Projects from './components/Projects';
+const Experience = lazy(() => import('./components/Experience'));
+const Certifications = lazy(() => import('./components/Certifications'));
+const Education = lazy(() => import('./components/Education'));
+const Achievements = lazy(() => import('./components/Achievements'));
+const Projects = lazy(() => import('./components/Projects'));
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -52,6 +52,8 @@ function App() {
   const [fading, setFading] = useState(false);
   const theme = themes[themeIdx];
 
+  const themeContextValue = useMemo(() => ({ theme, themes, themeIdx }), [theme, themeIdx]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setFading(true);
@@ -65,7 +67,7 @@ function App() {
   }, [themeIdx]);
 
   return (
-    <ThemeContext.Provider value={{ theme, themes, themeIdx }}>
+    <ThemeContext.Provider value={themeContextValue}>
       <div
         className="relative min-h-screen text-slate-200 overflow-x-hidden font-['Inter',sans-serif] transition-all duration-[800ms]"
         style={{
@@ -90,17 +92,19 @@ function App() {
         <ParticleBackground />
         <div className="relative z-10">
           <Navbar />
-          <main className="flex flex-col gap-24 pb-24">
-            <Hero />
-            <About />
-            <Skills />
-            <Experience />
-            <Certifications />
-            <Education />
-            <Achievements />
-            <Projects />
-            <Contact />
-          </main>
+          <Suspense fallback={<div className="text-center py-8 text-slate-400">Loading...</div>}>
+            <main className="flex flex-col gap-6 md:gap-24 pb-12 md:pb-24">
+              <Hero />
+              <About />
+              <Skills />
+              <Experience />
+              <Certifications />
+              <Education />
+              <Achievements />
+              <Projects />
+              <Contact />
+            </main>
+          </Suspense>
           <Footer />
         </div>
       </div>

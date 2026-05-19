@@ -40,7 +40,7 @@ const ParticleBackground = () => {
       },
       number: {
         density: { enable: true, area: 900 },
-        value: 55,
+        value: window.innerWidth < 768 ? 30 : 55,
       },
       opacity: { value: 0.4 },
       shape: { type: 'circle' },
@@ -52,7 +52,6 @@ const ParticleBackground = () => {
   return (
     <div className="absolute inset-0 -z-0">
       <Particles
-        key={theme.name}   /* key forces re-init when theme changes */
         id="tsparticles"
         init={particlesInit}
         options={options}
