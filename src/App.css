@@ -1,0 +1,5 @@
+/* 
+  All custom styles, Tailwind directives, and glassmorphism utilities 
+  have been moved to src/index.css to maintain a clean architecture. 
+  You no longer need App.css! 
+*/
