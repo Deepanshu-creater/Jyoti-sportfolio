@@ -299,7 +299,7 @@ const Hero = () => {
 
           <div className="flex flex-wrap gap-4 pt-2">
             <motion.a
-              href="models/Data Engineer_Jyoti Sharma_4+YOE.pdf"
+              href="models/Jyoti_Sharma_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.04, y: -2 }}
